@@ -1,8 +1,8 @@
 package com.company;
 
 public class IncBTWFactuur extends Factuur {
-    public IncBTWFactuur(double prijs) {
-        super(prijs);
+    public IncBTWFactuur() {
+        super();
     }
 
     @Override

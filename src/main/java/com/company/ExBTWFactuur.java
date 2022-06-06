@@ -3,8 +3,8 @@ package com.company;
 import com.company.Factuur;
 
 public class ExBTWFactuur extends Factuur {
-    public ExBTWFactuur(double prijs) {
-        super(prijs);
+    public ExBTWFactuur() {
+        super();
     }
 
     @Override

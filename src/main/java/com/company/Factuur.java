@@ -1,7 +1,6 @@
 package com.company;
 
 public abstract class Factuur {
-    private double prijs;
     private final double UURTARIEF;
     private final double UURTARIEF_KORTING;
 
@@ -13,13 +12,11 @@ public abstract class Factuur {
         UURTARIEF_KORTING = 70;
     }
 
-    public Factuur(double prijs){
-        this.prijs = prijs;
-    }
+    public Factuur(){}
 
     public abstract double getBTWKosten(double prijs);
 
-    public double berekenPrijs(Client client){
+    public final double berekenPrijs(Client client){
         double totaalPrijs;
         if (client.getAantalUren() == 0){
             totaalPrijs = 0;
