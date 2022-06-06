@@ -33,30 +33,4 @@ public abstract class Factuur {
         }
         return totaalPrijs;
     }
-
-  //  public double berekenPrijsExBTW(int aantalUren){
-    //    if (aantalUren == 0){
-    //        return 0;
-    //    } else if (aantalUren <= 10){
-   //         return 750;
-    //    } else if(aantalUren<25){
-    //        return UURTARIEF * aantalUren;
-    //    } else{
-    //        return UURTARIEF_KORTING * aantalUren;
-    //    }
-   // }
-
-   // public double berekenPrijsIncBTW(Client client){
-       // if (!client.isIngeschreven()){
-       //     return -1;
-       // }
-      //  double prijsExBtw = berekenPrijsExBTW(client.getAantalUren());
-      //  if(client.isSenior()){
-       //     prijsExBtw *= 0.9;
-    //    }
-       // if(btwToegevoegd) {
-       //     return prijsExBtw * 1.21;
-       // }
-      //  return prijsExBtw;
-   // }
 }
