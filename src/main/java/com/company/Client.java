@@ -6,10 +6,10 @@ public class Client {
     private int aantalUren; //aantal uren dat deze cliënt in behandeling gaat
     int clientnummer;
 
-    public Client(String naam, int leeftijd, int aantaluren, int clientnummer){
+    public Client(String naam, int leeftijd, int aantalUren, int clientnummer){
         this.naam = naam;
         this.leeftijd = leeftijd;
-        this.aantalUren = aantaluren;
+        this.aantalUren = aantalUren;
         this.clientnummer = clientnummer;
     }
 
