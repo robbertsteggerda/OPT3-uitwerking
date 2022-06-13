@@ -15,38 +15,49 @@ public class MainMenu { //als je onjuiste input geeft reageert het programma nie
 
         switch (input) {
             case 1:
-                scanner.nextLine();
-                System.out.print("Voer de naam in: ");
-                String naam = scanner.nextLine();
-                System.out.print("Voer de leeftijd in: ");
-                int leeftijd = scanner.nextInt();
-                System.out.print("Voer het aantal uren van de behandeling in: ");
-                int aantalUren = scanner.nextInt();
-                System.out.print("Voer het cliëntnummer in in: ");
-                int clientNummer = scanner.nextInt();
-
-
-                database.addClient(new Client(naam, leeftijd, aantalUren, clientNummer));
+                clientInvoeren(database);
                 menu();
             case 2:
-                for (int i = 0; i < database.getClienten().size(); i++) {
-                    Client client = database.getClienten().get(i);
-                    client.printInfo();
-                }
+                toonClientInfo((database));
                 menu();
             case 3:
-                scanner.nextLine();
-                System.out.print("Voer het cliëntnummer in om de prijs te berekenen: ");
-                int ingevoerdClientNummer = scanner.nextInt();
-                for (int i = 0; i < database.getClienten().size(); i++) {
-                    Client client = database.getClienten().get(i);
-                    if (client.getClientnummer() == ingevoerdClientNummer) {
-                        IncBTWFactuur factuur = new IncBTWFactuur();
-                        System.out.printf("de prijs is €%f", factuur.berekenPrijs(client));
-                        System.out.println();
-                        menu();
-                    }
-                }
+                berekenPrijs(database);
+                menu();
+        }
+    }
+
+    public static void clientInvoeren(Database database) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Voer de naam in: ");
+        String naam = scanner.nextLine();
+        System.out.print("Voer de leeftijd in: ");
+        int leeftijd = scanner.nextInt();
+        System.out.print("Voer het aantal uren van de behandeling in: ");
+        int aantalUren = scanner.nextInt();
+        System.out.print("Voer het cliëntnummer in in: ");
+        int clientNummer = scanner.nextInt();
+
+        database.addClient(new Client(naam, leeftijd, aantalUren, clientNummer));
+    }
+
+    public static void toonClientInfo(Database database) {
+        for (int i = 0; i < database.getClienten().size(); i++) {
+            Client client = database.getClienten().get(i);
+            client.printInfo();
+        }
+    }
+
+    public static void berekenPrijs(Database database) {
+        System.out.print("Voer het cliëntnummer in om de prijs te berekenen: ");
+        Scanner scanner = new Scanner(System.in);
+        int ingevoerdClientNummer = scanner.nextInt();
+        for (int i = 0; i < database.getClienten().size(); i++) {
+            Client client = database.getClienten().get(i);
+            if (client.getClientnummer() == ingevoerdClientNummer) {
+                IncBTWFactuur factuur = new IncBTWFactuur();
+                System.out.printf("de prijs is €%f", factuur.berekenPrijs(client));
+                System.out.println();
+            }
         }
     }
 }
