@@ -4,26 +4,28 @@ import java.util.Scanner;
 
 public class MainMenu { //als je onjuiste input geeft reageert het programma niet goed. Helaas had ik geen tijd om dit op te lossen. Zolang uw input correct is zou het programma correct moeten werken
     public static void menu() {
-        Scanner scanner = new Scanner(System.in);
+        Database database = Database.getInstance();
+        printMenu();
+
+        switch (getInputInt()) {
+            case 1:
+                clientInvoeren(database);
+                break;
+            case 2:
+                toonClientInfo((database));
+                break;
+            case 3:
+                berekenPrijs(database);
+                break;
+        }
+        menu();
+    }
+
+    private static void printMenu() {
         System.out.println("kies een optie");
         System.out.println("1. voer een nieuwe cliënt in");
         System.out.println("2. toon lijst met cliënten");
         System.out.println("3.bereken prijs voor een cliënt");
-
-        int input = scanner.nextInt();
-        Database database = Database.getInstance();
-
-        switch (input) {
-            case 1:
-                clientInvoeren(database);
-                menu();
-            case 2:
-                toonClientInfo((database));
-                menu();
-            case 3:
-                berekenPrijs(database);
-                menu();
-        }
     }
 
     public static void clientInvoeren(Database database) {
@@ -49,8 +51,7 @@ public class MainMenu { //als je onjuiste input geeft reageert het programma nie
 
     public static void berekenPrijs(Database database) {
         System.out.print("Voer het cliëntnummer in om de prijs te berekenen: ");
-        Scanner scanner = new Scanner(System.in);
-        int ingevoerdClientNummer = scanner.nextInt();
+        int ingevoerdClientNummer = getInputInt();
         for (int i = 0; i < database.getClienten().size(); i++) {
             Client client = database.getClienten().get(i);
             if (client.getClientnummer() == ingevoerdClientNummer) {
@@ -59,6 +60,11 @@ public class MainMenu { //als je onjuiste input geeft reageert het programma nie
                 System.out.println();
             }
         }
+    }
+
+    public static int getInputInt(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }
 
